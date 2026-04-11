@@ -242,11 +242,4 @@ poetry run pytest tests/test_agent_and_dynamic_tools.py -v
 poetry run pytest tests/test_base_tools.py -v
 ```
 
----
 
-## Documentación Relacionada
-
-| Documento | Descripción |
-|---|---|
-| [DEFENSA_TECNICA.md](DEFENSA_TECNICA.md) | Justificación técnica y arquitectónica completa |
-| [DETALLE_ARQUITECTURA_Y_MODELO.md](DETALLE_ARQUITECTURA_Y_MODELO.md) | Análisis estratégico del modelo y diseño |
