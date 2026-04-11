@@ -7,7 +7,7 @@ Un sistema multi-agente de IA que interactúa dinámicamente con un servidor Ope
 
 ## Arquitectura
 
-![Arquitectura](docs/arquitectura.png)
+![Arquitectura](arquitectura.png)
 ```
 
 ### Flujo de Decisión
