@@ -231,6 +231,8 @@ El Agente ha regresado a su estado original. Archivo dynamic_tools.py purgado.
 
 ## Correr los Tests
 
+El sistema cuenta con una suite de **18 tests automatizados** que validan la salud del agente sin necesidad de conectarse al servidor LDAP real (usando Mocks). Esto garantiza que la lógica de la IA y el procesamiento de datos sean correctos.
+
 ```bash
 # Correr todos los tests
 poetry run pytest tests/ -v
