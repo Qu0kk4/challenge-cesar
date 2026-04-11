@@ -195,7 +195,5 @@ challenge-cesar/
 
 | Documento | Descripción |
 |---|---|
-| [Defensa Técnica](docs/DEFENSA_TECNICA.md) | Justificación de cada decisión arquitectónica |
 | [Arquitectura y Modelo](docs/DETALLE_ARQUITECTURA_Y_MODELO.md) | Por qué Gemini Flash y LangGraph |
 | [Ejemplos de Uso](docs/EJEMPLOS_DE_USO.md) | Todos los casos de uso con output real |
-| [Guía de Estudio](docs/GUIA_ESTUDIO_DEFENSA.md) | Conceptos clave para la entrevista |
