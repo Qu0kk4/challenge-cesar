@@ -69,7 +69,7 @@ GEMINI_API_KEY=tu_api_key_de_google_ai_studio
 GROQ_API_KEY=opcional_para_usar_modelos_alternativos
 LLM_MODEL=gemini/gemini-2.0-flash
 LDAP_HOST=localhost
-LDAP_PORT=1389
+LDAP_PORT=389
 LDAP_ADMIN_DN=cn=admin,dc=meli,dc=com
 LDAP_ADMIN_PASSWORD=itachi
 LDAP_BASE_DN=dc=meli,dc=com
