@@ -11,7 +11,8 @@ Un sistema multi-agente de IA que interactúa dinámicamente con un servidor Ope
 
 ```
 ### Flujo de Decisión
-
+```
+```
 ```mermaid
 graph TD
     A([Usuario]) --> B[Consulta en Lenguaje Natural]
