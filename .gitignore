@@ -1,0 +1,29 @@
+# Variables de entorno (contiene API Keys)
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+*.egg-info/
+
+# Poetry
+.venv/
+
+# Logs generados en runtime
+agent.log
+
+# Herramientas dinámicas (se regeneran en runtime)
+src/tools/dynamic_tools.py
+
+# VS Code / IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Carpetas temporales
+New folder/
