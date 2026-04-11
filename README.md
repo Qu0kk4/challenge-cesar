@@ -6,6 +6,7 @@ Un sistema multi-agente de IA que interactúa dinámicamente con un servidor Ope
 ---
 
 ## Arquitectura
+arquitectura.png
 
 ```
 ```
