@@ -91,7 +91,7 @@ Tu consulta: hay datos ocultos en base64
 Procesando...
 Resultado de esteganografia:
 {
-  'alice.brown (pager)': '[POSIBLE SECRETO] AIzaSyAjCtuFBO_TK2GhgF5xwKiqs9fxWsnN_DA...'
+  'alice.brown (pager)': '[POSIBLE SECRETO] AIzaSyAjCtuFBO_TK2Gh################..'
 }
 ```
 > Uso ofensivo: Hallazgo crítico. La API Key de Gemini fue escondida en el atributo pager del usuario alice.brown en Base64. Esta herramienta la detecta automáticamente.
@@ -100,7 +100,7 @@ Decodificación manual de la API Key:
 ```python
 import base64
 base64.b64decode("QUl6YVN5QWpDdHVGQk9fVEsyR2hnRjV4d0tpcXM5ZnhXc25OLURB").decode()
-# → 'AIzaSyAjCtuFBO_TK2GhgF5xwKiqs9fxWsnN_DA'
+# → 'AIzaSyAjCtuF##########################'
 ```
 
 ---
