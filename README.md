@@ -39,7 +39,9 @@ graph TD
 | Infraestructura | Docker + Docker Compose | Entorno aislado y reproducible |
 
 ---
-
+```
+Nota sobre el modelo: Gracias a la integración con litellm, podés usar distintos proveedores usando el formato proveedor/nombre-del-modelo. Por ejemplo: gemini/gemini-2.0-flash o groq/llama-3.3-70b-versatile. Obtené tu API Key de Gemini en Google AI Studio.
+```
 ## Instalación y Setup
 
 ### 1. Levantar el servidor LDAP
