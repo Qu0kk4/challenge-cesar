@@ -50,6 +50,7 @@ def dynamic_tool(ldap_client):
 
 IMPORTANTE: ldap_client.search() ya devuelve strings directos en cada atributo (NO listas).
 Nunca uses r.get("cn")[0]. Usa directamente r.get("cn").
+SUPER CRÍTICO: Asegúrate siempre de incluir en 'lista_de_atributos' TODO atributo que pretendas extraer luego con r.get(). Si tu diccionario final usa r.get("cn") y r.get("mail"), la lista en la búsqueda DEBE SER obligatoriamente ["cn", "mail"]. Si no omites las claves, el resultado será vacío.
 """
         response = litellm.completion(
             model=self.model,
