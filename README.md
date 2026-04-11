@@ -1,7 +1,7 @@
 # Sistema de Agentes LDAP Auto-Adaptativos
 ### Offensive Security Challenge — Mercado Libre
 
-Un sistema multi-agente de IA que interactúa dinámicamente con un servidor OpenLDAP, orientado a tareas de seguridad ofensiva (Red Team). El sistema puede auto-expandir sus capacidades generando y ejecutando nuevas herramientas de Python en tiempo real usando Google Gemini 2.0 Flash.
+Un sistema multi-agente de IA que interactúa dinámicamente con un servidor OpenLDAP, orientado a tareas de seguridad ofensiva (Red Team). El sistema puede auto-expandir sus capacidades generando y ejecutando nuevas herramientas de Python en tiempo real usando cualquier AI mediante API-KEY
 
 ---
 
