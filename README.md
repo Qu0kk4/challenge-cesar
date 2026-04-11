@@ -8,25 +8,6 @@ Un sistema multi-agente de IA que interactúa dinámicamente con un servidor Ope
 ## Arquitectura
 
 ![Arquitectura](docs/arquitectura.png)
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    main.py  (CLI Entry Point)               │
-└────────────────────────┬────────────────────────────────────┘
-                         │
-             ┌───────────▼────────────┐
-             │      Coordinator       │  ← LangGraph StateGraph
-             │   (Cerebro / Router)   │
-             └──┬─────────────┬───────┘
-                │             │
-     ┌──────────▼──┐    ┌─────▼──────────────┐
-     │  BaseTools  │    │   GeneratorAgent   │  ← Gemini 2.0 Flash
-     │  (Ejecutor) │    │   (Forjador IA)    │
-     └──────────────┘   └──────────┬─────────┘
-                                   │ escribe
-                          ┌────────▼────────┐
-                          │ dynamic_tools.py│  ← Hot Reload (importlib)
-                          └─────────────────┘
 ```
 
 ### Flujo de Decisión
@@ -166,7 +147,7 @@ La API Key fue encontrada codificada en Base64 en el atributo pager del usuario 
 ```python
 import base64
 base64.b64decode("QUl6YVN5QWpDdHVGQk9fVEsyR2hnRjV4d0tpcXM5ZnhXc25OLURB").decode()
-# → 'AIzaSyAjCtuFBO_TK2GhgF5xwKiqs9fxWsnN_DA'  ← API key deprecada
+# → 'AIzaSyAjCtu##########################'  ← API key deprecada
 ```
 
 ---
@@ -183,7 +164,7 @@ poetry run pytest tests/ -v
 ## Estructura del Proyecto
 
 ```
-challgen-cesar/
+challenge-cesar/
 ├── main.py                          # Entry point CLI
 ├── pyproject.toml                   # Dependencias Poetry
 ├── .env                             # Variables de entorno (no commitear)
@@ -204,10 +185,8 @@ challgen-cesar/
 │   ├── test_base_tools.py
 │   └── test_agent_and_dynamic_tools.py
 └── docs/
-    ├── DEFENSA_TECNICA.md           # Justificación arquitectónica
     ├── DETALLE_ARQUITECTURA_Y_MODELO.md  # Análisis estratégico
     ├── EJEMPLOS_DE_USO.md           # Ejemplos completos
-    └── GUIA_ESTUDIO_DEFENSA.md      # Guía de conceptos clave
 ```
 
 ---
