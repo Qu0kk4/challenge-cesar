@@ -75,9 +75,9 @@ LDAP_BASE_DN=dc=meli,dc=com
 
 ```
 Nota sobre el modelo: Gracias a la integración con litellm, podés usar distintos proveedores usando el formato proveedor/nombre-del-modelo. Por ejemplo: gemini/gemini-2.0-flash o groq/llama-3.3-70b-versatile.
-https://docs.litellm.ai/docs/providers
 ```
 > https://docs.litellm.ai/docs/providers
+
 > Obtené tu API Key gratuita en https://aistudio.google.com/app/apikey
 
 ### 4. Ejecutar el agente
