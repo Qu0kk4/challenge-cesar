@@ -84,6 +84,7 @@ Por ejemplo: gemini/gemini-2.0-flash o groq/llama-3.3-70b-versatile.
 ### 4. Ejecutar el agente
 
 ```bash
+poetry lock
 poetry run python main.py
 ```
 
