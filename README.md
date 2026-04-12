@@ -212,4 +212,4 @@ challenge-cesar/
 |---|---|
 | [Arquitectura y Modelo](docs/DETALLE_ARQUITECTURA_Y_MODELO.md) | Por qué Gemini Flash y LangGraph |
 | [Ejemplos de Uso](docs/EJEMPLOS_DE_USO.md) | Todos los casos de uso con output real |
-| [Justificacion Odensiva](docs/JUSTIFICACION_OFENSIVA.md) | Fundamentación táctica (enfoque Red Team) detrás de cada herramienta |
+| [Justificacion Ofensiva](docs/JUSTIFICACION_OFENSIVA.md) | Fundamentación táctica (enfoque Red Team) detrás de cada herramienta |
