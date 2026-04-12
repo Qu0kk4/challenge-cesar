@@ -49,7 +49,7 @@ chmod +x setup-ldap.sh
 
 Levanta OpenLDAP en localhost:389 con el dominio meli.com.
 
-> Nota sobre el puerto: El challenge menciona el puerto estándar 389, pero se usa 1389 para evitar requerir permisos de root al levantar el contenedor. Gracias al archivo .env, esto es totalmente configurable.
+> Nota sobre el puerto: El challenge menciona el puerto estándar 389
 
 ### 2. Instalar dependencias
 
