@@ -190,7 +190,7 @@ Resultado:
 
 ### Listar todos los grupos del dominio
 ```
-Tu consulta: cual es el nombre de todos los grupos del dominio
+Tu consulta: cual es el nombre de todos los grupos
 
 Procesando...
 [!] Solicitando al LLM (gemini/gemini-2.0-flash) que construya una herramienta...
@@ -205,9 +205,7 @@ def dynamic_tool(ldap_client):
 
 Resultado:
 [
-  {'grupo': 'domain-admins', 'descripcion': 'Domain Administrators'},
-  {'grupo': 'security-team', 'descripcion': 'Security Operations Team'},
-  {'grupo': 'developers', 'descripcion': 'Development Team'},
+  'admins', 'developers', 'managers', 'hr', 'finance', 'qa', 'it', 'all_users'
   ...
 ]
 ```
