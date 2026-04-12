@@ -170,26 +170,37 @@ poetry run pytest tests/ -v
 challenge-cesar/
 ├── main.py                          # Entry point CLI
 ├── pyproject.toml                   # Dependencias Poetry
-├── .env                             # Variables de entorno (no commitear)
+├── poetry.lock                      # Árbol de dependencias exactas
 ├── .gitignore                       # Archivos excluidos del repo
-├── src/
-│   ├── config.py                    # Configuración centralizada (.env)
+├── arquitectura.png                 # Diagrama visual de la solución
+│
+├── open_ldap_files/                 # Entorno local proporcionado por MeLi
+│   ├── setup-ldap.sh                # Script de automatización
+│   ├── docker-compose-meli-challenge.yml
+│   └── users_groups/                # Datos LDIF
+│
+├── src/                             # Código fuente del Agente
+│   ├── config.py                    # Configuración centralizada
 │   ├── ldap_client.py               # Cliente LDAP reutilizable
 │   ├── agents/
 │   │   ├── coordinator.py           # Coordinador (LangGraph StateGraph)
 │   │   ├── generator.py             # Agente Generador (Gemini via litellm)
-│   │   └── auditor.py              # Agente Auditor (Compliance/Blue Team)
+│   │   └── auditor.py               # Agente Auditor (Compliance/Blue Team)
 │   └── tools/
 │       ├── base_tools.py            # Herramientas ofensivas estáticas
 │       └── dynamic_tools.py         # Herramientas auto-generadas (hot reload)
-├── tests/
-│   ├── conftest.py
+│
+├── tests/                           # Suite de Testing (Pytest)
+│   ├── conftest.py                  # Mocks y Fixtures
 │   ├── test_ldap_client.py
 │   ├── test_base_tools.py
 │   └── test_agent_and_dynamic_tools.py
-└── docs/
-    ├── DETALLE_ARQUITECTURA_Y_MODELO.md  # Análisis estratégico
-    ├── EJEMPLOS_DE_USO.md           # Ejemplos completos
+│
+└── docs/                            # Documentación Técnica
+    ├── DETALLE_ARQUITECTURA_Y_MODELO.md  # Orquestación con LangGraph
+    ├── EJEMPLOS_DE_USO.md                # Flujos documentados y logs reales
+    └── JUSTIFICACION_OFENSIVA.md         # Fundamentación táctica (Red Team)
+
 ```
 
 ---
