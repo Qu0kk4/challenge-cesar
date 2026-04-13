@@ -13,6 +13,8 @@ No elegimos el modelo "más grande", sino el más eficiente para una operación 
 *   Seguimiento de Instrucciones (Reasoning): El sistema requiere que el modelo devuelva código Python puro sin explicaciones pre/post-texto. Gemini 2.0 Flash demostró una capacidad superior para respetar estos guardrails de formato.
 *   Ventana de Contexto Crítica: Para que la IA programe herramientas LDAP válidas, necesita conocer el esquema (atributos de usuario, grupos, OUs). Gemini nos permite pasarle todo este contexto sin degradar la calidad de la respuesta.
 *   Eficiencia de Recursos: Demostramos criterio de ingeniería al no subastar recursos excesivos para tareas de scripting que el modelo Flash resuelve a la perfección.
+*   Agnosticismo Tecnológico (Cero Vendor Lock-in): La integración de la librería LiteLLM envuelve las llamadas nativas aislando la lógica de negocio del proveedor de IA. Si el día de mañana la operación exige migrar de Google Gemini a Groq, OpenAI o un modelo Open-Source local alojado en Ollama, el sistema se adapta operativamente con solo modificar una variable de entorno. Esto garantiza un ciclo de vida extendido de la herramienta.
+
 
 ---
 
