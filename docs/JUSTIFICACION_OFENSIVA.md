@@ -1,8 +1,8 @@
 # Justificación del Enfoque Ofensivo (Red Team)
 ## Sistema de Agentes LDAP Auto-Adaptativos
 ---
-El presente documento detalla la justificación táctica detrás de las herramientas pre-programadas (`BaseTools`) incluidas en este agente. En lugar de diseñar un asistente de administración tradicional de identidades, el sistema fue concebido como un **sensor de reconocimiento avanzado** para operaciones de Seguridad Ofensiva (Red Team).
-La elección de las herramientas responde directamente a las fases clásicas de explotación de un entorno basado en OpenLDAP, haciendo hincapié en infraestructuras de e-commerce y fintech.
+Este documento detalla la justificación táctica de las `BaseTools`. El sistema no busca ser un administrador de identidades tradicional, sino operar como un sensor de reconocimiento ofensivo (Red Team). Cada herramienta fue elegida para automatizar fases clásicas de explotación LDAP, priorizando vectores críticos en infraestructuras Fintech e E-Commerce.
+
 ---
 ### 1. Reconocimiento de Identidad y Privilegios Base (`get_current_user_info` y `get_user_groups`)
 * **Qué hace:** Consulta a la estructura LDAP para determinar la identidad actual del enlace (Bind request) y desentraña el mapa de Control de Acceso (ACLs) mediante la adscripción a grupos.
