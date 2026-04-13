@@ -20,6 +20,19 @@ graph TD
     G -->|Datos| D
     D --> H[Respuesta al Usuario]
 ```
+## Coordinación Multi-Agente
+
+El sistema implementa una arquitectura de coordinación mediante **LangGraph StateGraph** donde tres agentes especializados se comunican mediante un estado compartido:
+
+### Agentes Involucrados
+
+| Agente | Rol | Responsabilidad |
+|--------|-----|-----------------|
+| **Coordinator** | Router/Orquestador | Analiza la consulta, decide si existe herramienta disponible o si debe generar una nueva. Mantiene el estado del grafo. |
+| **GeneratorAgent** | Programador | Recibe consultas desconocidas, genera código Python válido y lo inyecta en `dynamic_tools.py` mediante hot-reload. |
+| **AuditorAgent** | Compliance | Analiza hallazgos desde perspectiva Blue Team. Genera reportes de riesgo y verifica compliance (simulado). |
+
+### Flujo de Coordinación (con logs reales)
 
 ---
 
@@ -131,22 +144,22 @@ Resultado:
 
 ## Herramientas Ofensivas Implementadas
 
-Todas las herramientas están diseñadas desde la perspectiva de un Red Teamer:
+Todas las herramientas están diseñadas desde la perspectiva de un Red Teamer operando en un entorno de e-commerce/fintech como Mercado Libre:
 
-| Herramienta | Fase del Ataque | Descripción |
-|---|---|---|
-| get_current_user_info() | Reconocimiento | Privilegios y datos del bind LDAP actual |
-| get_user_groups() | Reconocimiento | Enumeración de grupos y ACLs |
-| find_password_patterns() | Pre-ataque | Preparación de Password Spraying |
-| extract_steganography() | Exfiltración | Secretos ocultos en campos LDAP inusuales |
-| find_weak_shells() | Movimiento Lateral | Usuarios con terminal interactiva /bin/bash |
-| enumerate_system_ou() | Reconocimiento | Configuración sensible en ou=system |
-| find_sudoers() | Escalamiento | Reglas de privilegios root en el dominio |
-| find_ssh_keys() | Movimiento Lateral | Claves SSH públicas para pivoting |
+| Herramienta | Fase del Ataque | ¿Por qué importa en contexto MeLi/Fintech? |
+|-------------|-----------------|-------------------------------------------|
+| `get_current_user_info()` | Reconocimiento | Identifica privilegios del bind LDAP actual. Determina si el atacante tiene acceso a datos de sellers, transacciones o datos de compliance PCI-DSS. |
+| `get_user_groups()` | Reconocimiento | Enumera grupos y ACLs. Crítico para mapear equipos (Finanzas, Fraud Prevention, DevOps) y identificar cuentas con acceso a datos de pagos o PII de usuarios. |
+| `find_password_patterns()` | Pre-ataque | Preparación de Password Spraying. Detecta cuentas con contraseñas predecibles (nombre+123) que podrían comprometer acceso a APIs de pagos o bases de datos de tarjetas. |
+| `extract_steganography()` | Exfiltración | Detecta secretos ocultos en campos LDAP inusuales. Encontró la API Key de Gemini en `pager`. En producción, podría revelar tokens de AWS, claves de APIs de pago o credenciales de servicios ocultas por desarrolladores. |
+| `find_weak_shells()` | Movimiento Lateral | Usuarios con `/bin/bash` habilitado. En infraestructuras cloud, indica cuentas con acceso interactivo a instancias EC2/GCP donde podría pivotear hacia microservicios de pagos. |
+| `enumerate_system_ou()` | Reconocimiento | Configuración sensible en `ou=system`. Expone service accounts, credenciales hardcodeadas en scripts de despliegue o configuraciones con acceso a repositorios críticos. |
+| `find_sudoers()` | Escalamiento | Reglas de privilegios root. Identifica quién puede escalar a root en servidores de logging o monitoreo que contienen trazas de transacciones financieras. |
+| `find_ssh_keys()` | Movimiento Lateral | Claves SSH públicas expuestas. Permite pivoting entre instancias. Podría dar acceso a bastiones de producción o nodos de Kubernetes con pods de procesamiento de pagos. |
 
 ### Hallazgo de la API Key Deprecada
 
-La API Key fue encontrada codificada en Base64 en el atributo pager del usuario alice.brown. La herramienta extract_steganography() la detecta automáticamente:
+La API Key fue encontrada codificada en Base64 en el atributo pager del usuario alice.brown:
 
 ```python
 import base64
