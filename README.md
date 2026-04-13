@@ -32,26 +32,16 @@ El sistema implementa una arquitectura de coordinación mediante **LangGraph Sta
 | **GeneratorAgent** | Programador | Recibe consultas desconocidas, genera código Python válido y lo inyecta en `dynamic_tools.py` mediante hot-reload. |
 | **AuditorAgent** | Compliance | Analiza hallazgos desde perspectiva Blue Team. Genera reportes de riesgo y verifica compliance (simulado). |
 
-## Arquitectura Core y Tolerancia a Fallos
+### Arquitectura Core y Tolerancia a Fallos
 
 El sistema no solo delega tareas, sino que implementa mecanismos robustos para garantizar la estabilidad del flujo de ejecución frente a inputs impredecibles o fallos externos:
 
-### Gestión de Estado y Análisis de Capacidades
-El sistema implementa un control de estado estricto (AgentState) en cada iteración de LangGraph. Al ingresar una petición, el Coordinator evalúa dinámicamente el diccionario `self.available_tools`. Si no posee la capacidad requerida activa inmediatamente la bandera de generación, evitando alucinaciones o ejecuciones a ciegas.
+*   **Gestión de Estado y Análisis de Capacidades**: El sistema implementa un control de estado estricto (`AgentState`) en cada iteración de LangGraph. Al ingresar una petición, el Coordinator evalúa dinámicamente si posee la capacidad requerida; si no es así, activa la bandera de generación para evitar alucinaciones.
+*   **Enrutamiento Inteligente**: El Coordinator funciona como un enrutador semántico. Interpreta la intención de la consulta y la enruta a los binarios locales correctos. Solo ante el desconocimiento total, delega el requerimiento al GeneratorAgent usando LiteLLM.
+*   **Aislamiento y Hot-Reloading**: La generación de nuevas herramientas no requiere reiniciar el flujo. El código forjado por la IA se inyecta dinámicamente recargando el módulo al vuelo mediante `importlib.reload()`. Esta inserción está protegida en bloques `try-except` que atajan errores léxicos o fallos de cuota HTTP 429 de la API, asegurando que el proceso principal (`main.py`) **nunca crashee**.
+*   **Sistema de Reset (Rollback)**: Mediante la función `_reset_tools()`, el agente purga el archivo de herramientas dinámicas dejándolo en su estado base y limpia el diccionario en memoria. Permite sanear el entorno de evaluación sin reiniciar Docker.
+*   **Logging Estructurado**: Toda transacción y ejecución es trazada y almacenada en `agent.log` con sus respectivos niveles (INFO/ERROR), ofreciendo total observabilidad sobre las decisiones del orquestador.
 
-### Enrutamiento Inteligente
-La arquitectura no asume la delegación directa. El Coordinator funciona como un enrutador semántico: interpreta la semántica de la consulta (interceptando sinónimos o intenciones) y la enruta a los binarios locales correctos. Solo ante el desconocimiento total, delega el requerimiento al GeneratorAgent usando LiteLLM como motor de forjado de código.
-
-### Verificación del Código e Inserción Limpia (Hot-Reloading)
-La generación de nuevas herramientas no requiere reiniciar el flujo. El código generado se inyecta dinámicamente recargando el módulo al vuelo mediante `importlib.reload()`. Esta inserción está aislada en bloques `try-except` que atajan errores léxicos o fallos de cuota (como el HTTP 429 RESOURCE_EXHAUSTED), evitando que un error de la IA crashee el proceso principal (`main.py`).
-
-### Sistema de Reset Controlado
-El sistema posee mecanismos de vuelta a un estado seguro (Rollback). Mediante la función `_reset_tools()`, el agente purga el archivo de herramientas dinámicas dejándolo en su estado base y limpia el diccionario en memoria, permitiendo sanear el entorno de evaluación sin reiniciar el docker ni perder el contexto de sesión.
-
-### Logging Estructurado
-Toda transacción inter-agente y ejecución de herramientas es trazada y almacenada en `agent.log`. Siguiendo el estándar de la industria, cada acción emite registros etiquetados (INFO/ERROR), ofreciendo total observabilidad sobre las decisiones del orquestador, los payloads generados por la IA y conectividad LDAP.
-
-### Flujo de Coordinación (con logs reales)
 
 ---
 
@@ -165,7 +155,7 @@ Resultado:
 
 Todas las herramientas están diseñadas desde la perspectiva de un Red Teamer operando en un entorno de e-commerce/fintech como Mercado Libre:
 
-| Herramienta | Fase del Ataque | ¿Por qué importa en contexto MeLi/Fintech? |
+| Herramienta | Fase del Ataque | ¿Por qué importa? |
 |-------------|-----------------|-------------------------------------------|
 | `get_current_user_info()` | Reconocimiento | Identifica privilegios del bind LDAP actual. Determina si el atacante tiene acceso a datos de sellers, transacciones o datos de compliance PCI-DSS. |
 | `get_user_groups()` | Reconocimiento | Enumera grupos y ACLs. Crítico para mapear equipos (Finanzas, Fraud Prevention, DevOps) y identificar cuentas con acceso a datos de pagos o PII de usuarios. |
