@@ -1,5 +1,6 @@
 # Justificación del Enfoque Ofensivo (Red Team)
 ## Sistema de Agentes LDAP Auto-Adaptativos
+---
 El presente documento detalla la justificación táctica detrás de las herramientas pre-programadas (`BaseTools`) incluidas en este agente. En lugar de diseñar un asistente de administración tradicional de identidades, el sistema fue concebido como un **sensor de reconocimiento avanzado** para operaciones de Seguridad Ofensiva (Red Team).
 La elección de las herramientas responde directamente a las fases clásicas de explotación de un entorno basado en OpenLDAP, haciendo hincapié en infraestructuras de e-commerce y fintech.
 ---
